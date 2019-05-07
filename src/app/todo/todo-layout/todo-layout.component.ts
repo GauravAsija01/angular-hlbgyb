@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoLayoutComponent implements OnInit {
 
+  //newtodo = '';
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addTodo() {
+  //   console.log(todoName);
+  //   this.newtodo = todoName;
   }
 
 }

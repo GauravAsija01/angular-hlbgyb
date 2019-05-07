@@ -5,7 +5,9 @@
     <th>Taskname</th>
     <th>Action</th>
   </tr>
-  <app-todo-data></app-todo-data>
+  <tr *ngFor="let todo of todos; let i = index;" [attr.id]="todo.id">
+      <app-todo-data></app-todo-data>
+  </tr>
   <tr>
     <td colspan="4" class="text-center" *ngIf="todos.length == 0">No Records Available</td>
   </tr>
