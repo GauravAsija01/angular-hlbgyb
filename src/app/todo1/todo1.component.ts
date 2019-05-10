@@ -74,4 +74,47 @@ export class Todo1Component implements OnInit {
 
   }
 
+
+
+//   addTask(event){
+//     event.preventDefault();
+//     console.log(this.title);
+//     var newTask = {
+//         title: this.title,
+//         isDone: false
+//     }
+//     //For Push in Database
+//     //this.tasks.push(newTask);
+
+//     //Push + Save in Database
+//     this.tasksService.addTask(newTask)
+//     .subscribe(task => {
+//         this.tasks.push(task);
+//         this.title = '';
+//     })
+// }
+
+// deleteTask(id){
+//     var tasks = this.tasks;
+
+//     this.tasksService.deleteTask(id)
+//     .subscribe(data => {
+//             if(data.n == 1){
+//                 for(var i = 0; i < tasks.length; i++){
+//                     if(tasks[i]._id == id){
+//                         tasks.splice(i,1);
+//                     }
+//                 }
+//             }
+//     })
+// }
+
+
+
+
+
+
+
+
+
 }
