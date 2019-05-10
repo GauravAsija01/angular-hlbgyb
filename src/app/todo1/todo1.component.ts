@@ -1,3 +1,4 @@
+import { TodoService } from './../service/todo.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Todo1Component implements OnInit {
 
-  todos = [
-    {id: 1, taskName: "Hello 1", isCompleted: false},
-    {id: 2, taskName: "Hello 2", isCompleted: true}
-  ];
+  todos :any[] = [];
+    // {id: 1, taskName: "Hello 1", isCompleted: false},
+    // {id: 2, taskName: "Hello 2", isCompleted: true}
+
 
   title = '';
   expanded = true;
@@ -19,16 +20,31 @@ export class Todo1Component implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    console.log(this.todos);
+    //console.log(this.todos);
+    this.fetchAllRecords();
   }
 
-  onClick(){
+
+  fetchAllRecords(){
+    this.todoService.getTodoRecords().subscribe((data) => {
+      this.todos = data;
+   },(err) => {
+     console.log(err);
+   });
+  }
+
+  addNewTodo(){
     console.log("New Added -- ", this.title);
-    this.todos.push({id: this.todos.length + 1,taskName: this.title, isCompleted: false});
-    this.title = '';
+    this.todoService.addTodoRecord().subscribe((data) => {
+      this.todos.push(data);
+    },(err)=> {
+      console.log(err);
+    });
+    //this.todos.push({id: this.todos.length + 1,taskName: this.title, isCompleted: false});
+    //this.title = '';
 
   }
   onDelete(i){
@@ -49,7 +65,7 @@ export class Todo1Component implements OnInit {
       // for(i = 0; i < this.todos.length; i++){
       //   if(this.todos[i].isCompleted == true){
       //       console.log("Done");
-            
+
       //   }
       // }
       this.isCompleted = !this.isCompleted;}

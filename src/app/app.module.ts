@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { Practice1Component } from './practice1.component';
@@ -21,7 +22,7 @@ import { TodoDataComponent } from './todo/todo-data/todo-data.component';
     TodoDataComponent
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule,FormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

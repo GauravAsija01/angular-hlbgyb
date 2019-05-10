@@ -20,7 +20,6 @@ export class AddTodoComponent implements OnInit {
   addTodo(){
     console.log("New Added -- ", this.title);
     this.createTodo.emit(this.title);
-    //this.todos.push({id: this.todos.length + 1,taskName: this.title, isCompleted: false});
     this.title = '';
 
   }
