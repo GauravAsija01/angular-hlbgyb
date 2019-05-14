@@ -19,7 +19,7 @@ export class TodoService {
 
   addTodoRecord(newRecord){
     console.log(newRecord);
-    return this.http.post(this.getURL('todos'));
+    return this.http.post(this.getURL('todos'), JSON.stringify(newRecord));
   }
 
 

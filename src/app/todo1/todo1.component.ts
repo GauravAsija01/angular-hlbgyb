@@ -44,7 +44,7 @@ export class Todo1Component implements OnInit {
       isCompleted: false
     }
     this.todoService.addTodoRecord(newRecord).subscribe((data) => {
-      this.todos.push({newRecord});
+      this.todos.push({id: data.id,taskName: newRecord.title, isCompleted: false});
       console.log(data);
       console.log(newRecord);
       this.title = '';
