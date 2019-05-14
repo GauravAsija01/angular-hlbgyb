@@ -5,7 +5,7 @@
         <div class="input-group">
           <input type="text" (keydown.enter)="addNewTodo()" class="form-control" placeholder="Add Task Name" #input="ngModel" [(ngModel)]="title" required minlength="4"  />
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" (click)="addNewTodo()" [disabled]="!input.valid">Add</button>
+            <button class="btn btn-default" type="button" (click)="addNewTodo($event)" [disabled]="!input.valid">Add</button>
           </span>
         </div>
         <!-- /input-group -->
@@ -30,7 +30,7 @@
           <th>Taskname</th>
           <th>Action</th>
         </tr>
-        <tr *ngFor="let todo of todos; let i = index;" [attr.id]="todo.id">
+        <tr *ngFor="let todo of todos; " [attr.id]="todo.id">
           <td>{{todo.id}}</td>
           <td><input type="checkbox" (change)="completedTask()" [(ngModel)]="todo.isCompleted" ></td>
           <td [ngClass]="todo.isCompleted ? 'taskDone' : 'notDone'">{{todo.taskName}}</td>
