@@ -40,7 +40,7 @@ export class Todo1Component implements OnInit {
   addNewTodo(data){
     console.log("New Added -- ", this.title);
     const newRecord = {
-      id: this.id, taskName: this.title, isCompleted: false
+      id: '', taskName: this.title, isCompleted: false
     }
     this.todoService.addTodoRecord(newRecord).subscribe((data) => {
       this.todos.push(data);

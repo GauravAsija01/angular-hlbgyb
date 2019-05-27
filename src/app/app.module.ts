@@ -10,6 +10,8 @@ import { TodoLayoutComponent } from './todo/todo-layout/todo-layout.component';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { AddTodoComponent } from './todo/add-todo/add-todo.component';
 import { TodoDataComponent } from './todo/todo-data/todo-data.component';
+import { TemplateFormsComponent } from './forms/template-forms/template-forms.component';
+import { ReactiveFormsComponent } from './forms/reactive-forms/reactive-forms.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { TodoDataComponent } from './todo/todo-data/todo-data.component';
     TodoLayoutComponent,
     TodoListComponent,
     AddTodoComponent,
-    TodoDataComponent
+    TodoDataComponent,
+    TemplateFormsComponent,
+    ReactiveFormsComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule
