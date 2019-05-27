@@ -34,7 +34,7 @@
           <td>{{todo.id}}</td>
           <td><input type="checkbox" (change)="completedTask()" [(ngModel)]="todo.isCompleted" ></td>
           <td [ngClass]="todo.isCompleted ? 'taskDone' : 'notDone'">{{todo.taskName}}</td>
-          <td><a href="javascript:;" (click)="onDelete(i)"><i class="fa fa-close"></i></a></td>
+          <td><a href="javascript:;" (click)="onDelete(todo.id)"><i class="fa fa-close"></i></a></td>
         </tr>
         <tr>
           <td colspan="4" class="text-center" *ngIf="todos.length == 0">No Records Available</td>

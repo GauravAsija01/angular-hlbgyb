@@ -17,9 +17,14 @@ export class TodoService {
      return this.http.get(this.getURL('todos'));
   }
 
-  addTodoRecord(newRecord){
-    console.log(newRecord);
-    return this.http.post(this.getURL('todos'), JSON.stringify(newRecord));
+  addTodoRecord(body){
+    console.log(body);
+    return this.http.post(this.getURL('todos'), body);
+
+  }
+
+  deleteTodoRecord(id){
+    return this.http.delete(this.getURL('todos/')+id);
   }
 
 

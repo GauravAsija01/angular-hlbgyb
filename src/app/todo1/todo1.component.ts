@@ -30,23 +30,23 @@ export class Todo1Component implements OnInit {
 
 
   fetchAllRecords(){
-    this.todoService.getTodoRecords().subscribe((data) => {
+    this.todoService.getTodoRecords().subscribe((data:any[]) => {
       this.todos = data;
    },(err) => {
      console.log(err);
    });
   }
 
-  addNewTodo(event){
+  addNewTodo(data){
     console.log("New Added -- ", this.title);
-    var newRecord = {
-      title: this.title,
-      isCompleted: false
+    const newRecord = {
+      id: this.id, taskName: this.title, isCompleted: false
     }
     this.todoService.addTodoRecord(newRecord).subscribe((data) => {
-      this.todos.push({id: data.id,taskName: newRecord.title, isCompleted: false});
-      console.log(data);
-      console.log(newRecord);
+      this.todos.push(data);
+      alert("Record Added Successfully");
+      console.log(data, "Data");
+      console.log(newRecord, "New Record");
       this.title = '';
     },(err)=> {
       console.log(err);
@@ -55,9 +55,17 @@ export class Todo1Component implements OnInit {
 
 
   }
-  onDelete(i){
+  onDelete(id){
 
-    this.todos.splice(i, 1);
+    //this.todos.splice(i, 1);
+    this.todoService.deleteTodoRecord(id).subscribe((data) => {
+      this.todos = this.todos.filter(obj => obj.id !== id);
+      alert("Record Deleted!");
+      console.log(data, "Data");
+    },(err)=> {
+      console.log(err);
+    });
+
 
   }
 
