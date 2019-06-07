@@ -9,22 +9,40 @@
       "id": 2,
       "taskName": "Hello 2",
       "isCompleted": true
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
     }
   ],
-  "posts": [
+  "usersdata": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "firstname": "Gaurav",
+      "lastname": "Asija",
+      "emailid": "gaurav.designer01@gmail.com",
+      "npassword": "gaur1234",
+      "cpassword": "gaur1234"
+    },
+    {
+      "id": 2,
+      "firstname": "",
+      "lastname": "",
+      "emailid": "",
+      "npassword": "",
+      "cpassword": ""
+    },
+    {
+      "id": 3,
+      "firstname": "",
+      "lastname": "",
+      "emailid": "",
+      "npassword": "",
+      "cpassword": ""
+    },
+    {
+      "id": 4,
+      "firstname": "",
+      "lastname": "",
+      "emailid": "",
+      "npassword": "",
+      "cpassword": ""
     }
   ],
   "comments": [

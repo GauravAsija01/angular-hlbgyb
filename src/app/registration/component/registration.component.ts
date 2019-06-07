@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { MustMatch } from './ps-match.validator';
+import { RegistrationService } from '../service/registration.service';
 
 
   function requiredControl(control: AbstractControl):{[key : string]: boolean } | null {
@@ -19,7 +20,16 @@ import { MustMatch } from './ps-match.validator';
 export class RegistrationComponent implements OnInit {
 
   registration : FormGroup;
-  constructor(private fb:FormBuilder ) { }
+  usersdata :any[] = [];
+  firstname = '';
+  lastname = '';
+  emailid = '';
+  npassword = '';
+  cpassword = '';
+
+
+
+  constructor(private fb:FormBuilder, private registrationservice : RegistrationService ) { }
 
 
   ngOnInit() {
@@ -35,12 +45,12 @@ export class RegistrationComponent implements OnInit {
   fbGroupForm(){
     const passwordPattern = "^[a-z0-9_-]{8,15}$"; 
     this.registration = this.fb.group({
-      firstname: ["Gaurav", [requiredControl, Validators.minLength(3)]],
-      lastname: ["Asija"],
-      emailid: ["gaurav.designer01@gmail.com", [Validators.required, Validators.email]],
+      firstname: ["", [requiredControl, Validators.minLength(3)]],
+      lastname: [""],
+      emailid: ["", [Validators.required, Validators.email]],
       newPassword: this.fb.group({
-       npassword: ["gaur1234", [Validators.required, Validators.pattern(passwordPattern)]],
-       cpassword: ["gaur1234", [Validators.required, Validators.pattern(passwordPattern)]]
+       npassword: ["", [Validators.required, Validators.pattern(passwordPattern)]],
+       cpassword: ["", [Validators.required, Validators.pattern(passwordPattern)]]
       }, {
         validator: MustMatch('npassword', 'cpassword')
     })
@@ -67,14 +77,37 @@ export class RegistrationComponent implements OnInit {
   get form() { return this.registration.controls; }
 
 
-  submitForm(){
-    if(this.registration.valid){
-     console.log(this.registration);
-      alert("Form Submitted!");
-    }
+  addNewUser(data){
+    console.log(this.registration);
+      // const fname = this.registration.controls.firstname.value;
+      // const lname = this.registration.controls.lastname.value;
+      // const email = this.registration.controls.emailid.value;
+      // const npass = this.registration.controls.npassword.value;
+      // const cpass = this.registration.controls.cpassword.value;
+   // if(this.registration.valid){
+      
+      // const newUser = {
+      //   id: '', firstname: fname, lastname: lname, emailid : email, npassword: npass, cpassword: cpass
+      // }
+      const newUser = {
+          id: '', firstname: fname, lastname: lname, emailid : email, npassword: npass, cpassword: cpass
+        }
+      this.registrationservice.addUsers(newUser).subscribe((data) => {
+        this.usersdata.push(data);
+        alert("Record Added Successfully");
+        console.log(data, "Data");
+        console.log(newUser, "New Record");
+        //this.title = '';
+      },(err)=> {
+        console.log(err);
+      });
+      //alert("Form Submitted!");
+    //}
     //console.log(this.registration.value);
     //console.log(this.registration.getRawValue());
   }
+
+  
 
   resetForm(){
     this.registration.reset();
