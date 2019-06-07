@@ -82,7 +82,7 @@
                   placeholder="Enter Firstname"
                   formControlName="firstname"
                 />
-                <span class="has-error" *ngIf="form.firstname.errors?.required">Please enter Firstname</span>
+                <span class="has-error" *ngIf="form.firstname.errors && form.firstname.errors['invalid-error']">Please enter Firstname</span>
                 <span class="has-error" *ngIf="form.firstname.errors?.minlength">Firstname length atleast 3 characters</span>
               </div>
               <div class="form-group">
@@ -134,8 +134,8 @@
               </div>
               <div class="col-md-12 text-center mb-3">
                 <button
-                  type="submit" (click)="submitForm()" [disabled]="!registration.valid"
-                  class=" btn btn-block mybtn btn-primary tx-tfm"
+                  type="submit" (click)="submitForm()" 
+                  class=" btn btn-block mybtn btn-primary tx-tfm" [disabled]="!registration.valid"
                 >Register
                 </button>
                 <button

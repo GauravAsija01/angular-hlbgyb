@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { MustMatch } from './ps-match.validator';
+
+
+  function requiredControl(control: AbstractControl):{[key : string]: boolean } | null {
+      if(control.value.length === 0){
+          return { 'invalid-error' : true }
+      }
+    return null;
+  }
+
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class ReactiveFormsComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   registration : FormGroup;
   constructor(private fb:FormBuilder ) { }
+
 
   ngOnInit() {
 
@@ -25,7 +35,7 @@ export class ReactiveFormsComponent implements OnInit {
   fbGroupForm(){
     const passwordPattern = "^[a-z0-9_-]{8,15}$"; 
     this.registration = this.fb.group({
-      firstname: ["Gaurav", [Validators.required, Validators.minLength(3)]],
+      firstname: ["Gaurav", [requiredControl, Validators.minLength(3)]],
       lastname: ["Asija"],
       emailid: ["gaurav.designer01@gmail.com", [Validators.required, Validators.email]],
       newPassword: this.fb.group({
@@ -59,7 +69,7 @@ export class ReactiveFormsComponent implements OnInit {
 
   submitForm(){
     if(this.registration.valid){
-      console.log(this.registration);
+     console.log(this.registration);
       alert("Form Submitted!");
     }
     //console.log(this.registration.value);
