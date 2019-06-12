@@ -1,0 +1,101 @@
+       <div id="second" *ngIf="showRegister">
+          <div class="myform form ">
+            <div class="logo mb-3">
+              <div class="col-md-12 text-center">
+                <h1>Signup</h1>
+              </div>
+            </div>
+            <form  [formGroup]="registration">
+              <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input
+                  type="text"
+                  name="firstname"
+                  class="form-control"
+                  id="firstname"
+                  placeholder="Enter Firstname"
+                  formControlName="firstname"
+                />
+                <div class="showError" *ngIf="submitted">
+                  <span class="has-error" *ngIf="form.firstname.errors && form.firstname.errors['invalid-error']">Please enter Firstname</span>
+                  <span class="has-error" *ngIf="form.firstname.errors?.minlength">Firstname length atleast 3 characters</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Last Name</label>
+                <input
+                  type="text"
+                  name="lastname"
+                  class="form-control"
+                  id="lastname"
+                  placeholder="Enter Lastname"
+                  formControlName="lastname"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter email"
+                  formControlName="emailid"
+                />
+                <div class="showError" *ngIf="submitted">
+                  <span class="has-error" *ngIf="form.emailid.errors?.email">Enter valid email Address</span>
+                </div>
+              </div>
+              
+              <div formGroupName="newPassword">
+                <div class="form-group">
+                  <label for="">New Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter New Password"
+                    formControlName="npassword"
+                  />
+                  <div class="showError" *ngIf="submitted">
+                    <span class="has-error" *ngIf="form.newPassword.controls.npassword.errors?.required">Enter Password atleast 8 - 15 characters</span>
+                    <span class="has-error" *ngIf="form.newPassword.controls.npassword.errors?.pattern">Pattern Not Match</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter Confirm Password"
+                    formControlName="cpassword"
+                  />
+                  <div class="showError" *ngIf="submitted">
+                    <span class="has-error" *ngIf="form.newPassword.controls.cpassword.errors?.required">Enter Password atleast 8 - 15 characters</span>
+                    <span class="has-error" *ngIf="form.newPassword.controls.cpassword.errors?.pattern">Pattern Not Match</span>
+                    <span class="has-error" *ngIf="form.newPassword.controls.cpassword.errors?.mustMatch">Confirm Password should be same as new password</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 text-center mb-3">
+                <button
+                  type="submit" (click)="addNewUser($event)" 
+                  class=" btn btn-block mybtn btn-primary tx-tfm" 
+                >Register
+                </button>
+                <button
+                type="submit" (click)="resetForm()"
+                class=" btn btn-block mybtn btn-dark  tx-tfm"
+              >Reset
+              </button>
+              </div>
+              <div class="col-md-12 ">
+                <div class="form-group">
+                  <p class="text-center">
+                    <a href="javascript:;" id="signin" (click)="showLoginForm()">Already have an account?</a>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      
+
+  <!-- [disabled]="!registration.valid" -->

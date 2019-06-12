@@ -1,0 +1,6 @@
+.form-control{ border-radius: 0; position: relative;}
+.form-control:focus{ box-shadow: none !important;}
+.ng-invalid{ border-color:red;}
+.form-control + .has-error{ position: relative;}
+.form-control + .showError{ position: relative; padding-bottom: 25px;}
+.has-error{ position: absolute; bottom:-2px; left: 0; color: darkred; }
